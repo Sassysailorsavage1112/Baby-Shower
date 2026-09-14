@@ -4,1699 +4,1643 @@
    ========================================================== */
 
 :root {
-    --ocean-light: #dff8fc;
-    --ocean: #71cfe4;
-    --ocean-medium: #3baac5;
-    --ocean-dark: #197c9c;
+--ocean-light: #dff8fc;
+--ocean: #71cfe4;
+--ocean-medium: #3baac5;
+--ocean-dark: #197c9c;
 
-    --navy: #17465b;
+--navy: #17465b;
 
-    --pink: #f3a5c2;
-    --pink-dark: #e982a8;
-    --pink-light: #ffe4ee;
+--pink: #f3a5c2;
+--pink-dark: #e982a8;
+--pink-light: #ffe4ee;
 
-    --sand: #f8e7c5;
-    --cream: #fffdf9;
+--cream: #fffdf9;
+--white: #ffffff;
 
-    --white: #ffffff;
+--text: #315567;
+--text-light: #66818d;
 
-    --text: #315567;
-    --text-light: #66818d;
+--card: rgba(255, 255, 255, 0.88);
 
-    --card: rgba(255, 255, 255, 0.88);
+--shadow: 0 15px 45px rgba(23, 70, 91, 0.12);
 
-    --shadow:
-        0 15px 45px rgba(23, 70, 91, 0.12);
+--heading: "Cormorant Garamond", Georgia, serif;
+--body: "Quicksand", Arial, sans-serif;
 
-    --heading:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
-
-    --body:
-        "Quicksand",
-        Arial,
-        sans-serif;
-
-    --transition: 0.35s ease;
+--transition: 0.35s ease;
 }
 
 
-/* ==========================================================
-   DARK MODE
-   ========================================================== */
+/* =========================
+DARK MODE
+========================= */
 
 body.dark {
-    --ocean-light: #102f3a;
-    --ocean: #17677d;
-    --ocean-medium: #14566a;
-    --ocean-dark: #80d9ec;
+--ocean-light: #102f3a;
+--ocean: #17677d;
+--ocean-medium: #14566a;
+--ocean-dark: #80d9ec;
 
-    --navy: #d9f8ff;
+--navy: #d9f8ff;
 
-    --pink: #f39abb;
-    --pink-dark: #ec7ea8;
-    --pink-light: #432b36;
+--pink: #f39abb;
+--pink-dark: #ec7ea8;
+--pink-light: #432b36;
 
-    --cream: #102832;
+--cream: #102832;
+--white: #172f39;
 
-    --white: #172f39;
+--text: #d8edf2;
+--text-light: #a9c5cd;
 
-    --text: #d8edf2;
-    --text-light: #a9c5cd;
+--card: rgba(23, 47, 57, 0.92);
 
-    --card: rgba(23, 47, 57, 0.92);
+--shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
 
-    --shadow:
-        0 15px 45px rgba(0, 0, 0, 0.3);
-
-    background: #09232d;
+background: #09232d;
 }
 
 
-/* ==========================================================
-   RESET
-   ========================================================== */
+/* =========================
+RESET
+========================= */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
-
 
 html {
-    scroll-behavior: smooth;
+scroll-behavior: smooth;
 }
-
 
 body {
-    font-family: var(--body);
-    color: var(--text);
+min-width: 320px;
 
-    background:
-        linear-gradient(
-            180deg,
-            var(--cream),
-            var(--ocean-light)
-        );
+font-family: var(--body);
 
-    overflow-x: hidden;
+color: var(--text);
 
-    transition:
-        background var(--transition),
-        color var(--transition);
+background:
+linear-gradient(
+180deg,
+var(--cream),
+var(--ocean-light)
+);
+
+overflow-x: hidden;
+
+transition:
+background var(--transition),
+color var(--transition);
 }
-
-
-img {
-    max-width: 100%;
-}
-
 
 a {
-    color: inherit;
+color: inherit;
+}
+
+button,
+a {
+-webkit-tap-highlight-color: transparent;
 }
 
 
-/* ==========================================================
-   LIGHT / DARK MODE BUTTON
-   ========================================================== */
+/* =========================
+DARK MODE BUTTON
+========================= */
 
 .theme-toggle {
-    position: fixed;
+position: fixed;
 
-    top: 18px;
-    right: 20px;
+top: 18px;
+right: 20px;
 
-    z-index: 2000;
+z-index: 2000;
 
-    width: 48px;
-    height: 48px;
+width: 48px;
+height: 48px;
 
-    border-radius: 50%;
+border: 2px solid rgba(255, 255, 255, 0.8);
 
-    border: 2px solid rgba(255, 255, 255, 0.8);
+border-radius: 50%;
 
-    background:
-        rgba(255, 255, 255, 0.75);
+background: rgba(255, 255, 255, 0.75);
 
-    backdrop-filter: blur(10px);
+backdrop-filter: blur(10px);
 
-    cursor: pointer;
+cursor: pointer;
 
-    font-size: 20px;
+font-size: 20px;
 
-    box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.12);
+box-shadow:
+0 6px 20px rgba(0, 0, 0, 0.12);
 
-    transition:
-        transform var(--transition),
-        background var(--transition);
+transition:
+transform var(--transition),
+background var(--transition);
 }
-
 
 .theme-toggle:hover {
-    transform:
-        rotate(15deg)
-        scale(1.08);
+transform: rotate(15deg) scale(1.08);
 }
 
 
-/* ==========================================================
-   NAVIGATION
-   ========================================================== */
+/* =========================
+NAVIGATION
+========================= */
 
 .navbar {
-    position: fixed;
+position: fixed;
 
-    top: 0;
-    left: 0;
+top: 0;
+left: 0;
 
-    width: 100%;
-    height: 70px;
+width: 100%;
+height: 70px;
 
-    z-index: 1500;
+z-index: 1500;
 
-    display: flex;
+display: flex;
+align-items: center;
+justify-content: space-between;
 
-    align-items: center;
+padding: 0 90px 0 30px;
 
-    justify-content: space-between;
+background:
+rgba(255, 255, 255, 0.82);
 
-    padding:
-        0 90px 0 30px;
+backdrop-filter: blur(15px);
 
-    background:
-        rgba(255, 255, 255, 0.82);
-
-    backdrop-filter: blur(15px);
-
-    box-shadow:
-        0 3px 20px rgba(23, 70, 91, 0.1);
-
-    transition:
-        background var(--transition);
+box-shadow:
+0 3px 20px rgba(23, 70, 91, 0.1);
 }
-
 
 .dark .navbar {
-    background:
-        rgba(9, 35, 45, 0.88);
+background:
+rgba(9, 35, 45, 0.88);
 }
-
 
 .nav-logo {
-    font-family: var(--heading);
+font-family: var(--heading);
 
-    font-size: 25px;
+font-size: 25px;
+font-weight: 700;
 
-    font-weight: 700;
+color: var(--navy);
 
-    color: var(--navy);
+text-decoration: none;
 }
-
 
 .nav-links {
-    display: flex;
+display: flex;
+align-items: center;
 
-    gap: 30px;
-
-    align-items: center;
+gap: 30px;
 }
-
 
 .nav-links a {
-    font-size: 13px;
+font-size: 13px;
+font-weight: 700;
 
-    font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
 
-    letter-spacing: 1px;
+text-decoration: none;
 
-    text-transform: uppercase;
+color: var(--navy);
 
-    text-decoration: none;
-
-    color: var(--navy);
-
-    transition:
-        color var(--transition),
-        transform var(--transition);
+transition:
+color var(--transition),
+transform var(--transition);
 }
-
 
 .nav-links a:hover {
-    color: var(--pink-dark);
+color: var(--pink-dark);
 
-    transform:
-        translateY(-2px);
+transform: translateY(-2px);
 }
-
 
 .menu-toggle {
-    display: none;
+display: none;
 
-    border: none;
+border: none;
 
-    background: transparent;
+background: transparent;
 
-    color: var(--navy);
+color: var(--navy);
 
-    font-size: 28px;
+font-size: 28px;
 
-    cursor: pointer;
+cursor: pointer;
 }
 
 
-/* ==========================================================
-   HERO
-   ========================================================== */
+/* =========================
+HERO
+========================= */
 
 .hero {
-    position: relative;
+position: relative;
 
-    min-height: 100vh;
+min-height: 100vh;
 
-    overflow: hidden;
+overflow: hidden;
 
-    display: flex;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    align-items: center;
+text-align: center;
 
-    justify-content: center;
+padding:
+120px 20px 190px;
 
-    text-align: center;
-
-    padding:
-        120px 20px 190px;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(255, 255, 255, 0.95),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            180deg,
-            var(--cream),
-            var(--ocean-light),
-            var(--ocean)
-        );
-
-    transition:
-        background var(--transition);
+background:
+radial-gradient(
+circle at 50% 15%,
+rgba(255, 255, 255, 0.95),
+transparent 35%
+),
+linear-gradient(
+180deg,
+var(--cream),
+var(--ocean-light),
+var(--ocean)
+);
 }
-
 
 .dark .hero {
-    background:
-
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(93, 193, 214, 0.12),
-            transparent 30%
-        ),
-
-        linear-gradient(
-            180deg,
-            #0b2732,
-            #0c3948,
-            #125d72
-        );
+background:
+radial-gradient(
+circle at 50% 20%,
+rgba(93, 193, 214, 0.12),
+transparent 30%
+),
+linear-gradient(
+180deg,
+#0b2732,
+#0c3948,
+#125d72
+);
 }
-
-
-/* ==========================================================
-   HERO CONTENT
-   ========================================================== */
 
 .hero-content {
-    position: relative;
+position: relative;
 
-    z-index: 30;
+z-index: 30;
 
-    max-width: 900px;
+max-width: 900px;
 
-    animation:
-        fadeUp 1.2s ease;
+animation:
+fadeUp 1.2s ease;
 }
-
 
 .hero-anchor {
-    font-size: 45px;
+font-size: 45px;
 
-    margin-bottom: 10px;
+margin-bottom: 10px;
 
-    animation:
-        gentleFloat 4s ease-in-out infinite;
+animation:
+gentleFloat 4s ease-in-out infinite;
 }
-
 
 .eyebrow {
-    font-size: 14px;
+margin-bottom: 18px;
 
-    font-weight: 700;
+color: var(--ocean-dark);
 
-    text-transform: uppercase;
+font-size: 14px;
+font-weight: 700;
 
-    letter-spacing: 4px;
+letter-spacing: 4px;
 
-    color: var(--ocean-dark);
-
-    margin-bottom: 18px;
+text-transform: uppercase;
 }
-
 
 .hero h1 {
-    font-family: var(--heading);
+margin-bottom: 30px;
 
-    font-size:
-        clamp(65px, 11vw, 125px);
+color: var(--navy);
 
-    line-height: 0.85;
+font-family: var(--heading);
 
-    color: var(--navy);
+font-size: clamp(65px, 11vw, 125px);
 
-    margin-bottom: 30px;
+line-height: 0.85;
 
-    text-shadow:
-        2px 3px 0 rgba(255, 255, 255, 0.45);
+text-shadow:
+2px 3px 0 rgba(255, 255, 255, 0.45);
 }
-
 
 .hero h1 span {
-    display: block;
+display: block;
 
-    color: var(--pink-dark);
+margin-top: 10px;
 
-    margin-top: 10px;
+color: var(--pink-dark);
 }
-
 
 .hero-subtitle {
-    max-width: 650px;
+max-width: 650px;
 
-    margin:
-        0 auto 35px;
+margin:
+0 auto 35px;
 
-    font-family: var(--heading);
+color: var(--ocean-dark);
 
-    font-size:
-        clamp(20px, 3vw, 30px);
+font-family: var(--heading);
 
-    font-style: italic;
+font-size: clamp(20px, 3vw, 30px);
 
-    line-height: 1.35;
+font-style: italic;
 
-    color: var(--ocean-dark);
+line-height: 1.35;
 }
 
 
-/* ==========================================================
-   BUTTONS
-   ========================================================== */
+/* =========================
+BUTTONS
+========================= */
 
 .primary-button {
-    display: inline-flex;
+display: inline-flex;
 
-    align-items: center;
+align-items: center;
+justify-content: center;
 
-    justify-content: center;
+min-height: 50px;
 
-    gap: 8px;
+padding:
+15px 30px;
 
-    padding:
-        15px 30px;
+border:
+2px solid transparent;
 
-    border-radius: 100px;
+border-radius: 100px;
 
-    background:
-        var(--pink);
+background: var(--pink);
 
-    color: white;
+color: white;
 
-    text-decoration: none;
+font-weight: 700;
 
-    font-weight: 700;
+text-decoration: none;
 
-    box-shadow:
-        0 10px 25px rgba(233, 130, 168, 0.3);
+box-shadow:
+0 10px 25px rgba(233, 130, 168, 0.3);
 
-    transition:
-        transform var(--transition),
-        background var(--transition),
-        box-shadow var(--transition);
+transition:
+transform var(--transition),
+background var(--transition),
+color var(--transition),
+border-color var(--transition),
+box-shadow var(--transition);
 }
-
 
 .primary-button:hover {
-    transform:
-        translateY(-4px);
+transform: translateY(-4px);
 
-    background:
-        var(--pink-dark);
+background: var(--pink-dark);
 
-    box-shadow:
-        0 15px 30px rgba(233, 130, 168, 0.4);
+box-shadow:
+0 15px 30px rgba(233, 130, 168, 0.4);
 }
-
 
 .pink-button {
-    background:
-        var(--pink);
+background: var(--pink);
+}
+
+.outline-button {
+border-color:
+rgba(255, 255, 255, 0.8);
+
+background: transparent;
+
+color: white;
+}
+
+.outline-button:hover {
+border-color: white;
+
+background: white;
+
+color: var(--ocean-dark);
 }
 
 
-/* ==========================================================
-   SAILBOAT
-   ========================================================== */
+/* =========================
+FLOATING MERMAID
+========================= */
 
 .sailboat {
-    position: absolute;
+position: absolute;
 
-    z-index: 40;
+z-index: 40;
 
-    left: 50%;
+left: 50%;
+bottom: 95px;
 
-    bottom: 95px;
+font-size:
+clamp(70px, 10vw, 120px);
 
-    font-size:
-        clamp(70px, 10vw, 120px);
+transform:
+translateX(-50%);
 
-    transform:
-        translateX(-50%);
-
-    animation:
-        boatBob 4s ease-in-out infinite;
+animation:
+boatBob 4s ease-in-out infinite;
 }
-
 
 @keyframes boatBob {
 
-    0%,
-    100% {
-        transform:
-            translateX(-50%)
-            translateY(0)
-            rotate(-2deg);
-    }
+0%,
+100% {
+transform:
+translateX(-50%)
+translateY(0)
+rotate(-2deg);
+}
 
-    50% {
-        transform:
-            translateX(-50%)
-            translateY(-12px)
-            rotate(2deg);
-    }
+50% {
+transform:
+translateX(-50%)
+translateY(-12px)
+rotate(2deg);
+}
 }
 
 
-/* ==========================================================
-   OCEAN WAVES
-   ========================================================== */
+/* =========================
+OCEAN WAVES
+========================= */
 
 .ocean {
-    position: absolute;
+position: absolute;
 
-    bottom: 0;
-    left: 0;
+z-index: 20;
 
-    width: 100%;
-    height: 145px;
+bottom: 0;
+left: 0;
 
-    overflow: hidden;
+width: 100%;
+height: 145px;
 
-    z-index: 20;
+overflow: hidden;
 }
-
 
 .wave {
-    position: absolute;
+position: absolute;
 
-    left: -10%;
+left: -10%;
 
-    width: 120%;
-    height: 130px;
+width: 120%;
+height: 130px;
 
-    border-radius:
-        50% 50% 0 0;
+border-radius:
+50% 50% 0 0;
 
-    background:
-        rgba(255, 255, 255, 0.8);
+background:
+rgba(255, 255, 255, 0.8);
 }
-
 
 .wave-1 {
-    bottom: -85px;
+bottom: -85px;
 
-    animation:
-        waveOne 7s ease-in-out infinite;
+animation:
+waveOne 7s ease-in-out infinite;
 }
-
 
 .wave-2 {
-    bottom: -100px;
+bottom: -100px;
 
-    opacity: 0.5;
+opacity: 0.5;
 
-    animation:
-        waveTwo 10s ease-in-out infinite;
+animation:
+waveTwo 10s ease-in-out infinite;
 }
-
 
 .wave-3 {
-    bottom: -115px;
+bottom: -115px;
 
-    opacity: 0.3;
+opacity: 0.3;
 
-    animation:
-        waveOne 13s ease-in-out infinite reverse;
+animation:
+waveOne 13s ease-in-out infinite reverse;
 }
-
 
 @keyframes waveOne {
 
-    0%,
-    100% {
-        transform:
-            translateX(-3%);
-    }
-
-    50% {
-        transform:
-            translateX(3%);
-    }
+0%,
+100% {
+transform:
+translateX(-3%);
 }
 
+50% {
+transform:
+translateX(3%);
+}
+}
 
 @keyframes waveTwo {
 
-    0%,
-    100% {
-        transform:
-            translateX(4%);
-    }
+0%,
+100% {
+transform:
+translateX(4%);
+}
 
-    50% {
-        transform:
-            translateX(-4%);
-    }
+50% {
+transform:
+translateX(-4%);
+}
 }
 
 
-/* ==========================================================
-   FISH
-   ========================================================== */
+/* =========================
+FISH
+========================= */
 
 .ocean-creatures {
-    position: absolute;
+position: absolute;
 
-    inset: 0;
+z-index: 10;
 
-    pointer-events: none;
+inset: 0;
 
-    z-index: 10;
+pointer-events: none;
 }
-
 
 .fish {
-    position: absolute;
+position: absolute;
 
-    font-size: 35px;
+font-size: 35px;
 
-    opacity: 0.75;
+opacity: 0.75;
 }
-
 
 .fish-1 {
-    top: 58%;
-    left: -10%;
+top: 58%;
+left: -10%;
 
-    animation:
-        swimRight 18s linear infinite;
+animation:
+swimRight 18s linear infinite;
 }
-
 
 .fish-2 {
-    top: 72%;
-    left: -15%;
+top: 72%;
+left: -15%;
 
-    font-size: 25px;
+font-size: 25px;
 
-    animation:
-        swimRight 24s linear infinite 3s;
+animation:
+swimRight 24s linear infinite 3s;
 }
-
 
 .fish-3 {
-    top: 64%;
-    left: -10%;
+top: 64%;
+left: -10%;
 
-    font-size: 30px;
+font-size: 30px;
 
-    animation:
-        swimRight 21s linear infinite 7s;
+animation:
+swimRight 21s linear infinite 7s;
 }
-
 
 .fish-4 {
-    top: 78%;
-    left: -15%;
+top: 78%;
+left: -15%;
 
-    font-size: 24px;
+font-size: 24px;
 
-    animation:
-        swimRight 28s linear infinite 10s;
+animation:
+swimRight 28s linear infinite 10s;
 }
-
 
 @keyframes swimRight {
 
-    0% {
-        transform:
-            translateX(0)
-            translateY(0);
-    }
+0% {
+transform:
+translateX(0)
+translateY(0);
+}
 
-    25% {
-        transform:
-            translateX(30vw)
-            translateY(-15px);
-    }
+25% {
+transform:
+translateX(30vw)
+translateY(-15px);
+}
 
-    50% {
-        transform:
-            translateX(60vw)
-            translateY(10px);
-    }
+50% {
+transform:
+translateX(60vw)
+translateY(10px);
+}
 
-    75% {
-        transform:
-            translateX(90vw)
-            translateY(-10px);
-    }
+75% {
+transform:
+translateX(90vw)
+translateY(-10px);
+}
 
-    100% {
-        transform:
-            translateX(120vw)
-            translateY(0);
-    }
+100% {
+transform:
+translateX(120vw)
+translateY(0);
+}
 }
 
 
-/* ==========================================================
-   STARFISH
-   ========================================================== */
+/* =========================
+STARFISH
+========================= */
 
 .starfish {
-    position: absolute;
+position: absolute;
 
-    opacity: 0.65;
+font-size: 30px;
 
-    font-size: 30px;
+opacity: 0.65;
 
-    animation:
-        starFloat 5s ease-in-out infinite;
+animation:
+starFloat 5s ease-in-out infinite;
 }
-
 
 .starfish-1 {
-    left: 12%;
-    top: 68%;
+top: 68%;
+left: 12%;
 }
-
 
 .starfish-2 {
-    right: 12%;
-    top: 75%;
+top: 75%;
+right: 12%;
 
-    animation-delay: 2s;
+animation-delay: 2s;
 }
-
 
 @keyframes starFloat {
 
-    0%,
-    100% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-    }
+0%,
+100% {
+transform:
+translateY(0)
+rotate(0deg);
+}
 
-    50% {
-        transform:
-            translateY(-15px)
-            rotate(25deg);
-    }
+50% {
+transform:
+translateY(-15px)
+rotate(25deg);
+}
 }
 
 
-/* ==========================================================
-   BUBBLES
-   ========================================================== */
+/* =========================
+BUBBLES
+========================= */
 
 .bubble-container {
-    position: absolute;
+position: absolute;
 
-    inset: 0;
+z-index: 15;
 
-    z-index: 15;
+inset: 0;
 
-    pointer-events: none;
+pointer-events: none;
 }
-
 
 .bubble {
-    position: absolute;
+position: absolute;
 
-    bottom: -60px;
+bottom: -60px;
 
-    display: block;
+display: block;
 
-    border:
-        2px solid rgba(255, 255, 255, 0.65);
+border:
+2px solid rgba(255, 255, 255, 0.65);
 
-    border-radius: 50%;
+border-radius: 50%;
 
-    background:
-        rgba(255, 255, 255, 0.08);
+background:
+rgba(255, 255, 255, 0.08);
 
-    box-shadow:
-        inset 2px 2px 5px
-        rgba(255, 255, 255, 0.5);
+box-shadow:
+inset 2px 2px 5px rgba(255, 255, 255, 0.5);
 
-    animation:
-        riseBubble linear infinite;
+animation:
+riseBubble linear infinite;
 }
-
 
 .bubble-1 {
-    left: 8%;
+left: 8%;
 
-    width: 18px;
-    height: 18px;
+width: 18px;
+height: 18px;
 
-    animation-duration: 9s;
+animation-duration: 9s;
 }
-
 
 .bubble-2 {
-    left: 20%;
+left: 20%;
 
-    width: 30px;
-    height: 30px;
+width: 30px;
+height: 30px;
 
-    animation-duration: 13s;
-    animation-delay: 2s;
+animation-duration: 13s;
+animation-delay: 2s;
 }
-
 
 .bubble-3 {
-    left: 35%;
+left: 35%;
 
-    width: 12px;
-    height: 12px;
+width: 12px;
+height: 12px;
 
-    animation-duration: 8s;
-    animation-delay: 1s;
+animation-duration: 8s;
+animation-delay: 1s;
 }
-
 
 .bubble-4 {
-    left: 50%;
+left: 50%;
 
-    width: 24px;
-    height: 24px;
+width: 24px;
+height: 24px;
 
-    animation-duration: 12s;
-    animation-delay: 4s;
+animation-duration: 12s;
+animation-delay: 4s;
 }
-
 
 .bubble-5 {
-    left: 64%;
+left: 64%;
 
-    width: 14px;
-    height: 14px;
+width: 14px;
+height: 14px;
 
-    animation-duration: 10s;
+animation-duration: 10s;
 }
-
 
 .bubble-6 {
-    left: 75%;
+left: 75%;
 
-    width: 32px;
-    height: 32px;
+width: 32px;
+height: 32px;
 
-    animation-duration: 14s;
-    animation-delay: 3s;
+animation-duration: 14s;
+animation-delay: 3s;
 }
-
 
 .bubble-7 {
-    left: 88%;
+left: 88%;
 
-    width: 18px;
-    height: 18px;
+width: 18px;
+height: 18px;
 
-    animation-duration: 11s;
+animation-duration: 11s;
 }
-
 
 .bubble-8 {
-    left: 94%;
+left: 94%;
 
-    width: 10px;
-    height: 10px;
+width: 10px;
+height: 10px;
 
-    animation-duration: 7s;
+animation-duration: 7s;
 }
-
 
 @keyframes riseBubble {
 
-    0% {
-        transform:
-            translateY(0)
-            scale(0.7);
+0% {
+transform:
+translateY(0)
+scale(0.7);
 
-        opacity: 0;
-    }
+opacity: 0;
+}
 
-    15% {
-        opacity: 0.8;
-    }
+15% {
+opacity: 0.8;
+}
 
-    80% {
-        opacity: 0.6;
-    }
+80% {
+opacity: 0.6;
+}
 
-    100% {
-        transform:
-            translateY(-110vh)
-            scale(1.1);
+100% {
+transform:
+translateY(-110vh)
+scale(1.1);
 
-        opacity: 0;
-    }
+opacity: 0;
+}
 }
 
 
-/* ==========================================================
-   SECTIONS
-   ========================================================== */
+/* =========================
+SECTIONS
+========================= */
 
 .section {
-    width:
-        min(
-            1100px,
-            calc(100% - 40px)
-        );
+width:
+min(1100px, calc(100% - 40px));
 
-    margin: auto;
+margin: auto;
 
-    padding:
-        100px 0;
+padding:
+100px 0;
 }
-
 
 .section-heading {
-    text-align: center;
+margin-bottom: 50px;
 
-    margin-bottom: 50px;
+text-align: center;
 }
-
 
 .section-icon {
-    display: block;
+display: block;
 
-    font-size: 42px;
+margin-bottom: 10px;
 
-    margin-bottom: 10px;
+font-size: 42px;
 }
-
 
 .section-heading h2 {
-    font-family: var(--heading);
+margin-bottom: 12px;
 
-    font-size:
-        clamp(42px, 7vw, 65px);
+color: var(--navy);
 
-    line-height: 1;
+font-family: var(--heading);
 
-    color: var(--navy);
+font-size:
+clamp(42px, 7vw, 65px);
 
-    margin-bottom: 12px;
+line-height: 1;
 }
-
 
 .section-heading p {
-    color: var(--text-light);
+color: var(--text-light);
 
-    font-style: italic;
+font-family: var(--heading);
 
-    font-family: var(--heading);
+font-size: 20px;
 
-    font-size: 20px;
+font-style: italic;
 }
 
 
-/* ==========================================================
-   INVITATION CARD
-   ========================================================== */
+/* =========================
+INVITATION
+========================= */
 
 .invitation-card {
-    position: relative;
+position: relative;
 
-    max-width: 850px;
+max-width: 850px;
 
-    margin: auto;
+margin: auto;
 
-    padding:
-        60px 50px;
+padding:
+60px 50px;
 
-    background:
-        var(--card);
+border:
+2px solid rgba(243, 165, 194, 0.35);
 
-    border:
-        2px solid
-        rgba(243, 165, 194, 0.35);
+border-radius: 35px;
 
-    border-radius: 35px;
+background: var(--card);
 
-    text-align: center;
+text-align: center;
 
-    box-shadow:
-        var(--shadow);
+box-shadow: var(--shadow);
 
-    backdrop-filter:
-        blur(10px);
+backdrop-filter: blur(10px);
 }
-
 
 .invitation-card h3 {
-    font-family: var(--heading);
+margin-bottom: 25px;
 
-    color: var(--pink-dark);
+color: var(--pink-dark);
 
-    font-size: 45px;
+font-family: var(--heading);
 
-    margin-bottom: 25px;
+font-size: 45px;
 }
-
 
 .invitation-card p {
-    font-family: var(--heading);
+margin-bottom: 20px;
 
-    font-size: 22px;
+font-family: var(--heading);
 
-    line-height: 1.65;
+font-size: 22px;
 
-    margin-bottom: 20px;
+line-height: 1.65;
 }
-
 
 .invitation-card .signature {
-    color: var(--ocean-dark);
+margin-top: 30px;
 
-    font-weight: 700;
+color: var(--ocean-dark);
 
-    margin-top: 30px;
+font-weight: 700;
 }
-
 
 .card-decoration {
-    position: absolute;
+position: absolute;
 
-    color: var(--ocean-medium);
+color: var(--ocean-medium);
 
-    font-size: 30px;
+font-size: 30px;
 
-    opacity: 0.7;
+opacity: 0.7;
 }
-
 
 .top-left {
-    top: 25px;
-    left: 30px;
+top: 25px;
+left: 30px;
 }
-
 
 .top-right {
-    top: 25px;
-    right: 30px;
+top: 25px;
+right: 30px;
 }
 
 
-/* ==========================================================
-   EVENT DETAILS
-   ========================================================== */
+/* =========================
+EVENT DETAILS
+========================= */
 
 .details-grid {
-    display: grid;
+display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+grid-template-columns:
+repeat(4, 1fr);
 
-    gap: 22px;
+gap: 22px;
 }
-
 
 .detail-card {
-    padding:
-        35px 20px;
+padding:
+35px 20px;
 
-    background:
-        var(--card);
+border-radius: 25px;
 
-    border-radius: 25px;
+background: var(--card);
 
-    text-align: center;
+text-align: center;
 
-    box-shadow:
-        var(--shadow);
+box-shadow: var(--shadow);
 
-    transition:
-        transform var(--transition);
+transition:
+transform var(--transition);
 }
-
 
 .detail-card:hover {
-    transform:
-        translateY(-8px);
+transform:
+translateY(-8px);
 }
-
 
 .detail-icon {
-    font-size: 42px;
+margin-bottom: 15px;
 
-    margin-bottom: 15px;
+font-size: 42px;
 }
-
 
 .detail-card h3 {
-    font-family: var(--heading);
+margin-bottom: 10px;
 
-    color: var(--navy);
+color: var(--navy);
 
-    font-size: 30px;
+font-family: var(--heading);
 
-    margin-bottom: 10px;
+font-size: 30px;
 }
-
 
 .detail-card p {
-    margin-bottom: 5px;
+margin-bottom: 5px;
 }
-
 
 .detail-card strong {
-    color: var(--ocean-dark);
+color: var(--ocean-dark);
+}
+
+.food-note {
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+gap: 10px;
+
+max-width: 700px;
+
+margin:
+30px auto 0;
+
+padding:
+18px 24px;
+
+border:
+1px solid rgba(59, 170, 197, 0.25);
+
+border-radius: 18px;
+
+background: var(--card);
+
+color: var(--ocean-dark);
+
+font-weight: 700;
+
+text-align: center;
+
+box-shadow:
+0 8px 20px rgba(23, 70, 91, 0.08);
+}
+
+.food-note span {
+font-size: 25px;
 }
 
 
-/* ==========================================================
-   COUNTDOWN
-   ========================================================== */
+/* =========================
+COUNTDOWN
+========================= */
 
 .countdown-card {
-    padding:
-        60px 25px;
+padding:
+60px 25px;
 
-    border-radius: 35px;
+border-radius: 35px;
 
-    background:
+background:
+linear-gradient(
+135deg,
+rgba(243, 165, 194, 0.25),
+rgba(113, 207, 228, 0.25)
+);
 
-        linear-gradient(
-            135deg,
-            rgba(243, 165, 194, 0.25),
-            rgba(113, 207, 228, 0.25)
-        );
-
-    box-shadow:
-        var(--shadow);
+box-shadow: var(--shadow);
 }
-
 
 .countdown {
-    display: flex;
+display: flex;
 
-    justify-content: center;
+justify-content: center;
 
-    gap: 18px;
+gap: 18px;
 
-    flex-wrap: wrap;
+flex-wrap: wrap;
 }
-
 
 .time-box {
-    min-width: 105px;
+min-width: 105px;
 
-    padding:
-        20px 15px;
+padding:
+20px 15px;
 
-    background:
-        var(--card);
+border-radius: 20px;
 
-    border-radius: 20px;
+background: var(--card);
 
-    text-align: center;
+text-align: center;
 
-    box-shadow:
-        0 8px 20px
-        rgba(23, 70, 91, 0.08);
+box-shadow:
+0 8px 20px rgba(23, 70, 91, 0.08);
 }
-
 
 .time-box strong {
-    display: block;
+display: block;
 
-    font-family: var(--heading);
+color: var(--pink-dark);
 
-    font-size: 48px;
+font-family: var(--heading);
 
-    color: var(--pink-dark);
+font-size: 48px;
 
-    line-height: 1;
+line-height: 1;
 }
-
 
 .time-box span {
-    display: block;
+display: block;
 
-    margin-top: 8px;
+margin-top: 8px;
 
-    font-size: 11px;
+color: var(--text-light);
 
-    font-weight: 700;
+font-size: 11px;
 
-    text-transform: uppercase;
+font-weight: 700;
 
-    letter-spacing: 1px;
+letter-spacing: 1px;
 
-    color: var(--text-light);
+text-transform: uppercase;
+}
+
+.countdown-message {
+margin-top: 25px;
+
+color: var(--ocean-dark);
+
+font-family: var(--heading);
+
+font-size: 22px;
+
+font-style: italic;
+
+text-align: center;
 }
 
 
-/* ==========================================================
-   REGISTRY
-   ========================================================== */
+/* =========================
+REGISTRY
+========================= */
 
 .registry-card {
-    max-width: 800px;
+max-width: 800px;
 
-    margin: auto;
+margin: auto;
 
-    padding:
-        55px 35px;
+padding:
+55px 35px;
 
-    text-align: center;
+border-radius: 35px;
 
-    background:
-        var(--card);
+background: var(--card);
 
-    border-radius: 35px;
+text-align: center;
 
-    box-shadow:
-        var(--shadow);
+box-shadow: var(--shadow);
 }
-
 
 .treasure {
-    font-size: 42px;
+margin-bottom: 20px;
 
-    margin-bottom: 20px;
+font-size: 42px;
 }
-
 
 .registry-card p {
-    max-width: 650px;
+max-width: 650px;
 
-    margin:
-        0 auto 30px;
+margin:
+0 auto 30px;
 
-    line-height: 1.8;
+font-family: var(--heading);
 
-    font-family: var(--heading);
+font-size: 21px;
 
-    font-size: 21px;
+line-height: 1.8;
 }
 
 
-/* ==========================================================
-   RSVP
-   ========================================================== */
+/* =========================
+RSVP
+========================= */
 
 .rsvp-card {
-    min-height: 430px;
+position: relative;
 
-    border-radius: 40px;
+min-height: 500px;
 
-    display: flex;
+display: flex;
 
-    justify-content: center;
+align-items: center;
+justify-content: center;
 
-    align-items: center;
+overflow: hidden;
 
-    text-align: center;
+padding: 40px;
 
-    padding: 40px;
+border-radius: 40px;
 
-    position: relative;
+background:
+linear-gradient(
+rgba(23, 70, 91, 0.82),
+rgba(23, 70, 91, 0.82)
+),
+url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80");
 
-    overflow: hidden;
+background-position: center;
 
-    background:
+background-size: cover;
 
-        linear-gradient(
-            rgba(23, 70, 91, 0.82),
-            rgba(23, 70, 91, 0.82)
-        ),
+text-align: center;
 
-        url(
-            "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80"
-        );
-
-    background-size: cover;
-
-    background-position: center;
-
-    box-shadow:
-        var(--shadow);
+box-shadow: var(--shadow);
 }
-
 
 .rsvp-content {
-    max-width: 650px;
+max-width: 700px;
 
-    color: white;
+color: white;
 }
-
 
 .rsvp-content h2 {
-    font-family: var(--heading);
+margin-bottom: 15px;
 
-    font-size:
-        clamp(50px, 8vw, 75px);
+font-family: var(--heading);
 
-    margin-bottom: 15px;
+font-size:
+clamp(50px, 8vw, 75px);
+}
+
+.rsvp-content > p {
+margin-bottom: 30px;
+
+font-family: var(--heading);
+
+font-size: 22px;
+}
+
+.rsvp-actions {
+display: flex;
+
+justify-content: center;
+
+gap: 15px;
+
+flex-wrap: wrap;
+
+margin-bottom: 25px;
+}
+
+.rsvp-contact {
+margin-bottom: 15px !important;
+
+font-family: var(--body) !important;
+
+font-size: 16px !important;
+
+font-style: normal;
+
+line-height: 1.8;
+}
+
+.rsvp-contact a {
+color: white;
+
+font-weight: 700;
+}
+
+.rsvp-note {
+margin-bottom: 0 !important;
+
+font-family: var(--body) !important;
+
+font-size: 14px !important;
+
+font-style: italic;
 }
 
 
-.rsvp-content p {
-    font-family: var(--heading);
-
-    font-size: 22px;
-
-    margin-bottom: 30px;
-}
-
-
-/* ==========================================================
-   FOOTER
-   ========================================================== */
+/* =========================
+FOOTER
+========================= */
 
 footer {
-    text-align: center;
+padding:
+60px 20px 90px;
 
-    padding:
-        60px 20px 90px;
+color: var(--navy);
 
-    color: var(--navy);
+text-align: center;
 }
-
 
 .footer-shell {
-    font-size: 40px;
+margin-bottom: 15px;
 
-    margin-bottom: 15px;
+font-size: 40px;
 }
-
 
 footer p {
-    font-family: var(--heading);
+font-family: var(--heading);
 
-    font-size: 21px;
+font-size: 21px;
 }
-
 
 .footer-small {
-    margin-top: 5px;
+margin-top: 5px;
 
-    color: var(--text-light);
+color: var(--text-light);
 }
-
 
 .footer-icons {
-    margin-top: 20px;
+margin-top: 20px;
 
-    font-size: 22px;
+font-size: 22px;
 
-    letter-spacing: 7px;
+letter-spacing: 7px;
 }
 
 
-/* ==========================================================
-   GENERAL ANIMATIONS
-   ========================================================== */
+/* =========================
+ANIMATIONS
+========================= */
 
 @keyframes fadeUp {
 
-    from {
-        opacity: 0;
+from {
+opacity: 0;
 
-        transform:
-            translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
+transform:
+translateY(30px);
 }
 
+to {
+opacity: 1;
+
+transform:
+translateY(0);
+}
+}
 
 @keyframes gentleFloat {
 
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
+0%,
+100% {
+transform:
+translateY(0);
+}
 
-    50% {
-        transform:
-            translateY(-8px);
-    }
+50% {
+transform:
+translateY(-8px);
+}
 }
 
 
-/* ==========================================================
-   TABLET
-   ========================================================== */
+/* =========================
+TABLET
+========================= */
 
 @media (max-width: 900px) {
 
-    .navbar {
-        padding:
-            0 85px 0 20px;
-    }
+.navbar {
+padding:
+0 85px 0 20px;
+}
 
+.details-grid {
+grid-template-columns:
+repeat(2, 1fr);
+}
 
-    .details-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-
-    .section {
-        padding:
-            80px 0;
-    }
-
+.section {
+padding:
+80px 0;
+}
 }
 
 
-/* ==========================================================
-   PHONE
-   ========================================================== */
+/* =========================
+MOBILE
+========================= */
 
 @media (max-width: 650px) {
 
-    .navbar {
-        height: 60px;
+.navbar {
+height: 60px;
 
-        padding:
-            0 75px 0 18px;
-    }
+padding:
+0 75px 0 18px;
+}
 
+.nav-logo {
+font-size: 21px;
+}
 
-    .nav-logo {
-        font-size: 21px;
-    }
+.menu-toggle {
+display: block;
+}
 
+.nav-links {
+position: absolute;
 
-    .menu-toggle {
-        display: block;
-    }
+top: 60px;
+left: 0;
 
+width: 100%;
 
-    .nav-links {
-        position: absolute;
+display: none;
 
-        top: 60px;
-        left: 0;
+flex-direction: column;
 
-        width: 100%;
+gap: 20px;
 
-        padding: 20px;
+padding: 20px;
 
-        display: none;
+background:
+rgba(255, 255, 255, 0.97);
 
-        flex-direction: column;
+box-shadow:
+0 10px 20px rgba(0, 0, 0, 0.1);
+}
 
-        gap: 20px;
+.dark .nav-links {
+background:
+rgba(9, 35, 45, 0.98);
+}
 
-        background:
-            rgba(255, 255, 255, 0.97);
+.nav-links.open {
+display: flex;
+}
 
-        box-shadow:
-            0 10px 20px
-            rgba(0, 0, 0, 0.1);
-    }
+.theme-toggle {
+top: 9px;
+right: 15px;
 
+width: 42px;
+height: 42px;
 
-    .dark .nav-links {
-        background:
-            rgba(9, 35, 45, 0.98);
-    }
+font-size: 17px;
+}
 
+.hero {
+min-height: 100svh;
 
-    .nav-links.open {
-        display: flex;
-    }
+padding:
+110px 20px 170px;
+}
 
+.hero-anchor {
+font-size: 35px;
+}
 
-    .theme-toggle {
-        width: 42px;
+.eyebrow {
+font-size: 10px;
 
-        height: 42px;
+letter-spacing: 2px;
+}
 
-        top: 9px;
-        right: 15px;
+.hero h1 {
+font-size:
+clamp(58px, 18vw, 85px);
+}
 
-        font-size: 17px;
-    }
+.hero-subtitle {
+font-size: 20px;
+}
 
+.sailboat {
+bottom: 85px;
+}
 
-    .hero {
-        min-height:
-            100svh;
+.fish {
+font-size: 25px;
+}
 
-        padding:
-            110px 20px 170px;
-    }
+.starfish {
+font-size: 22px;
+}
 
+.section {
+width:
+calc(100% - 30px);
 
-    .hero-anchor {
-        font-size: 35px;
-    }
+padding:
+65px 0;
+}
 
-
-    .eyebrow {
-        font-size: 10px;
-
-        letter-spacing: 2px;
-    }
-
-
-    .hero h1 {
-        font-size:
-            clamp(58px, 18vw, 85px);
-    }
-
-
-    .hero-subtitle {
-        font-size: 20px;
-    }
-
-
-    .sailboat {
-        bottom: 85px;
-    }
-
-
-    .fish {
-        font-size: 25px;
-    }
-
-
-    .starfish {
-        font-size: 22px;
-    }
-
-
-    .section {
-        width:
-            calc(100% - 30px);
-
-        padding:
-            65px 0;
-    }
-
-
-    .invitation-card {
-        padding:
-            45px 22px;
-    }
-
-
-    .invitation-card h3 {
-        font-size: 38px;
-    }
-
-
-    .invitation-card p {
-        font-size: 19px;
-    }
-
-
-    .card-decoration {
-        display: none;
-    }
-
-
-    .details-grid {
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 12px;
-    }
-
-
-    .detail-card {
-        padding:
-            25px 12px;
-    }
-
-
-    .detail-card h3 {
-        font-size: 25px;
-    }
-
-
-    .detail-card p,
-    .detail-card strong {
-        font-size: 13px;
-    }
-
-
-    .detail-icon {
-        font-size: 32px;
-    }
-
-
-    .countdown-card {
-        padding:
-            45px 10px;
-    }
-
-
-    .countdown {
-        gap: 8px;
-    }
-
-
-    .time-box {
-        min-width:
-            calc(50% - 8px);
-
-        padding:
-            15px 10px;
-    }
-
-
-    .time-box strong {
-        font-size: 38px;
-    }
-
-
-    .registry-card {
-        padding:
-            40px 20px;
-    }
-
-
-    .registry-card p {
-        font-size: 19px;
-    }
-
-
-    .rsvp-card {
-        min-height:
-            400px;
-
-        padding:
-            30px 20px;
-    }
-
-
-    .rsvp-content p {
-        font-size: 19px;
-    }
-
+.invitation-card {
+padding:
+45px 22px;
+}
+
+.invitation-card h3 {
+font-size: 38px;
+}
+
+.invitation-card p {
+font-size: 19px;
+}
+
+.card-decoration {
+display: none;
+}
+
+.details-grid {
+grid-template-columns:
+1fr 1fr;
+
+gap: 12px;
+}
+
+.detail-card {
+padding:
+25px 12px;
+}
+
+.detail-card h3 {
+font-size: 25px;
+}
+
+.detail-card p,
+.detail-card strong {
+font-size: 13px;
+}
+
+.detail-icon {
+font-size: 32px;
+}
+
+.food-note {
+padding: 16px;
+
+font-size: 14px;
+}
+
+.countdown-card {
+padding:
+45px 10px;
+}
+
+.countdown {
+gap: 8px;
+}
+
+.time-box {
+min-width:
+calc(50% - 8px);
+
+padding:
+15px 10px;
+}
+
+.time-box strong {
+font-size: 38px;
+}
+
+.registry-card {
+padding:
+40px 20px;
+}
+
+.registry-card p {
+font-size: 19px;
+}
+
+.rsvp-card {
+min-height: 500px;
+
+padding:
+30px 20px;
+}
+
+.rsvp-content > p {
+font-size: 19px;
+}
+
+.rsvp-actions {
+flex-direction: column;
+
+align-items: stretch;
+}
+
+.rsvp-actions .primary-button {
+width: 100%;
+}
+
+.rsvp-contact {
+font-size: 14px !important;
+}
 }
 
 
-/* ==========================================================
-   VERY SMALL PHONES
-   ========================================================== */
+/* =========================
+SMALL PHONES
+========================= */
 
 @media (max-width: 380px) {
 
-    .hero h1 {
-        font-size: 55px;
-    }
+.hero h1 {
+font-size: 55px;
+}
 
+.details-grid {
+grid-template-columns: 1fr;
+}
 
-    .details-grid {
-        grid-template-columns: 1fr;
-    }
+.time-box {
+min-width: 70px;
+}
 
-
-    .time-box {
-        min-width: 70px;
-    }
-
-
-    .time-box strong {
-        font-size: 32px;
-    }
-
+.time-box strong {
+font-size: 32px;
+}
 }
 
 
-/* ==========================================================
-   ACCESSIBILITY
-   ========================================================== */
+/* =========================
+REDUCED MOTION
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
+*,
+*::before,
+*::after {
+animation-duration: 0.01ms !important;
 
-        animation-duration:
-            0.01ms !important;
+animation-iteration-count: 1 !important;
 
-        animation-iteration-count:
-            1 !important;
-
-        scroll-behavior:
-            auto !important;
-    }
-
+scroll-behavior: auto !important;
+}
 }
