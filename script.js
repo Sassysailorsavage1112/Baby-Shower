@@ -1,73 +1,13 @@
-/* ==========================================================
-BABY GIRL OCEAN BABY SHOWER
-JAVASCRIPT
-========================================================== */
+document.addEventListener("DOMContentLoaded", () => {
 
+/* =========================
+ELEMENTS
+========================= */
 
-/* ==========================================================
-DARK / LIGHT MODE
-========================================================== */
+const body = document.body;
 
 const themeToggle =
 document.getElementById("themeToggle");
-
-const themeIcon =
-document.getElementById("themeIcon");
-
-
-/*
-Check whether the visitor previously
-selected a theme.
-*/
-
-const savedTheme =
-localStorage.getItem("babyShowerTheme");
-
-
-if (savedTheme === "dark") {
-
-document.body.classList.add("dark");
-
-themeIcon.textContent = "☀️";
-
-}
-
-
-themeToggle.addEventListener("click", () => {
-
-document.body.classList.toggle("dark");
-
-
-const darkMode =
-document.body.classList.contains("dark");
-
-
-if (darkMode) {
-
-themeIcon.textContent = "☀️";
-
-localStorage.setItem(
-"babyShowerTheme",
-"dark"
-);
-
-} else {
-
-themeIcon.textContent = "🌙";
-
-localStorage.setItem(
-"babyShowerTheme",
-"light"
-);
-
-}
-
-});
-
-
-/* ==========================================================
-MOBILE MENU
-========================================================== */
 
 const menuToggle =
 document.getElementById("menuToggle");
@@ -75,344 +15,301 @@ document.getElementById("menuToggle");
 const navLinks =
 document.getElementById("navLinks");
 
+const countdown =
+document.getElementById("countdown");
+
+const countdownMessage =
+document.getElementById("countdownMessage");
+
+const daysElement =
+document.getElementById("days");
+
+const hoursElement =
+document.getElementById("hours");
+
+const minutesElement =
+document.getElementById("minutes");
+
+const secondsElement =
+document.getElementById("seconds");
+
+
+/* =========================
+DARK MODE
+========================= */
+
+const savedTheme =
+localStorage.getItem("babyShowerTheme");
+
+if (savedTheme === "dark") {
+
+body.classList.add("dark");
+
+if (themeToggle) {
+
+themeToggle.textContent = "☀️";
+
+themeToggle.setAttribute(
+"aria-label",
+"Switch to light mode"
+);
+}
+}
+
+
+if (themeToggle) {
+
+themeToggle.addEventListener("click", () => {
+
+body.classList.toggle("dark");
+
+const isDarkMode =
+body.classList.contains("dark");
+
+themeToggle.textContent =
+isDarkMode ? "☀️" : "🌙";
+
+themeToggle.setAttribute(
+"aria-label",
+isDarkMode
+? "Switch to light mode"
+: "Switch to dark mode"
+);
+
+localStorage.setItem(
+"babyShowerTheme",
+isDarkMode ? "dark" : "light"
+);
+
+});
+}
+
+
+/* =========================
+MOBILE MENU
+========================= */
+
+if (menuToggle && navLinks) {
 
 menuToggle.addEventListener("click", () => {
 
+const isOpen =
 navLinks.classList.toggle("open");
 
+menuToggle.setAttribute(
+"aria-expanded",
+String(isOpen)
+);
 
-if (navLinks.classList.contains("open")) {
+menuToggle.setAttribute(
+"aria-label",
+isOpen
+? "Close navigation menu"
+: "Open navigation menu"
+);
 
-menuToggle.textContent = "✕";
-
-} else {
-
-menuToggle.textContent = "☰";
-
-}
+menuToggle.textContent =
+isOpen ? "✕" : "☰";
 
 });
 
 
-/*
-Close the mobile menu when
-someone clicks a navigation link.
-*/
-
-document
-.querySelectorAll(".nav-links a")
-.forEach(link => {
+navLinks
+.querySelectorAll("a")
+.forEach((link) => {
 
 link.addEventListener("click", () => {
 
 navLinks.classList.remove("open");
 
+menuToggle.setAttribute(
+"aria-expanded",
+"false"
+);
+
+menuToggle.setAttribute(
+"aria-label",
+"Open navigation menu"
+);
+
 menuToggle.textContent = "☰";
 
 });
 
 });
+}
 
 
-/* ==========================================================
-BABY SHOWER COUNTDOWN
-========================================================== */
+/* =========================
+COUNTDOWN
+========================= */
+
+const eventDateString =
+countdown?.dataset.eventDate;
 
 
-/*
-CHANGE THIS DATE.
+if (
+eventDateString &&
+daysElement &&
+hoursElement &&
+minutesElement &&
+secondsElement
+) {
 
-Current example:
-January 16, 2027 at 2:00 PM
-*/
-
-const showerDate =
-new Date(
-"January 16, 2027 14:00:00"
-).getTime();
-
-
-function updateCountdown() {
-
-const now =
-new Date().getTime();
+const eventDate =
+new Date(eventDateString);
 
 
-const distance =
-showerDate - now;
+const updateCountdown = () => {
+
+const now = new Date();
+
+const difference =
+eventDate.getTime() -
+now.getTime();
 
 
-/*
-If the date has arrived,
-replace the countdown.
-*/
+/* Event has arrived */
 
-if (distance <= 0) {
+if (difference <= 0) {
 
-document.getElementById(
-"countdown"
-).innerHTML = `
+daysElement.textContent = "0";
+hoursElement.textContent = "0";
+minutesElement.textContent = "0";
+secondsElement.textContent = "0";
 
-<div
-style="
-width:100%;
-text-align:center;
-font-family:Georgia,serif;
-font-size:28px;
-color:var(--pink-dark);
-"
->
+if (countdownMessage) {
 
-⚓️
-The celebration has begun!
-💕
-🌊
-
-</div>
-
-`;
+countdownMessage.textContent =
+"The celebration has begun! We can't wait to celebrate with you.";
+}
 
 return;
-
 }
+
+
+const totalSeconds =
+Math.floor(difference / 1000);
 
 
 const days =
 Math.floor(
-distance /
-(1000 * 60 * 60 * 24)
+totalSeconds / 86400
 );
-
 
 const hours =
 Math.floor(
-(distance %
-(1000 * 60 * 60 * 24)) /
-(1000 * 60 * 60)
+(totalSeconds % 86400) / 3600
 );
-
 
 const minutes =
 Math.floor(
-(distance %
-(1000 * 60 * 60)) /
-(1000 * 60)
+(totalSeconds % 3600) / 60
 );
-
 
 const seconds =
-Math.floor(
-(distance %
-(1000 * 60)) /
-1000
-);
+totalSeconds % 60;
 
 
-document.getElementById("days")
-.textContent =
-String(days).padStart(2, "0");
+daysElement.textContent =
+String(days);
 
-
-document.getElementById("hours")
-.textContent =
+hoursElement.textContent =
 String(hours).padStart(2, "0");
 
-
-document.getElementById("minutes")
-.textContent =
+minutesElement.textContent =
 String(minutes).padStart(2, "0");
 
-
-document.getElementById("seconds")
-.textContent =
+secondsElement.textContent =
 String(seconds).padStart(2, "0");
+
+
+if (countdownMessage) {
+
+countdownMessage.textContent =
+"Counting down to Sunday, October 18, 2026 at 3:00 PM.";
 
 }
 
+};
 
-/*
-Run immediately so there isn't
-a blank countdown for the first second.
-*/
 
 updateCountdown();
-
-
-/*
-Update once every second.
-*/
 
 setInterval(
 updateCountdown,
 1000
 );
+}
 
 
-/* ==========================================================
+/* =========================
 EXTRA BUBBLES
-========================================================== */
+========================= */
 
-const hero =
-document.querySelector(".hero");
+const bubbleContainer =
+document.querySelector(".bubble-container");
 
 
-function createBubble() {
+if (bubbleContainer) {
+
+for (
+let index = 0;
+index < 12;
+index += 1
+) {
 
 const bubble =
 document.createElement("span");
 
-
-bubble.classList.add(
-"bubble"
-);
+bubble.className =
+"bubble dynamic-bubble";
 
 
 const size =
 Math.floor(
-Math.random() * 24
+Math.random() * 22
 ) + 8;
+
+
+const leftPosition =
+Math.floor(
+Math.random() * 100
+);
+
+
+const duration =
+Math.floor(
+Math.random() * 8
+) + 8;
+
+
+const delay =
+Math.floor(
+Math.random() * 10
+);
 
 
 bubble.style.width =
 `${size}px`;
 
-
 bubble.style.height =
 `${size}px`;
 
-
 bubble.style.left =
-`${Math.random() * 100}%`;
-
+`${leftPosition}%`;
 
 bubble.style.animationDuration =
-`${Math.random() * 8 + 7}s`;
-
+`${duration}s`;
 
 bubble.style.animationDelay =
-`${Math.random() * 2}s`;
+`${delay}s`;
 
 
-hero
-.querySelector(".bubble-container")
-.appendChild(bubble);
-
-
-/*
-Remove the bubble after
-it has finished traveling.
-*/
-
-setTimeout(() => {
-
-bubble.remove();
-
-}, 18000);
-
+bubbleContainer.appendChild(
+bubble
+);
 }
-
-
-/*
-Create new bubbles periodically.
-*/
-
-setInterval(
-createBubble,
-1200
-);
-
-
-/* ==========================================================
-SMOOTH REVEAL ANIMATIONS
-========================================================== */
-
-
-/*
-Cards gently appear when they
-enter the screen.
-*/
-
-const observer =
-new IntersectionObserver(
-entries => {
-
-entries.forEach(entry => {
-
-if (entry.isIntersecting) {
-
-entry.target.classList.add(
-"visible"
-);
-
-observer.unobserve(
-entry.target
-);
-
 }
 
 });
-
-},
-
-{
-threshold: 0.15
-}
-);
-
-
-document
-.querySelectorAll(
-".detail-card, .invitation-card, .registry-card, .countdown-card"
-)
-.forEach(card => {
-
-card.style.opacity = "0";
-
-card.style.transform =
-"translateY(25px)";
-
-card.style.transition =
-"opacity 0.7s ease, transform 0.7s ease";
-
-observer.observe(card);
-
-});
-
-
-/*
-Add the visible animation.
-*/
-
-const revealStyle =
-document.createElement("style");
-
-
-revealStyle.textContent = `
-
-.detail-card.visible,
-.invitation-card.visible,
-.registry-card.visible,
-.countdown-card.visible {
-
-opacity: 1 !important;
-
-transform:
-translateY(0) !important;
-
-}
-
-`;
-
-
-document.head.appendChild(
-revealStyle
-);
-
-
-/* ==========================================================
-CONSOLE MESSAGE
-========================================================== */
-
-console.log(
-"⚓ Sea you soon baby girl! 🌊💕"
-);
