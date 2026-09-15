@@ -1,25 +1,93 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================
+MOBILE MENU
+========================================= */
 
-/* =========================
-ELEMENTS
-========================= */
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
-const body = document.body;
+if (menuToggle && navLinks) {
 
-const themeToggle =
-document.getElementById("themeToggle");
+menuToggle.addEventListener("click", () => {
 
-const menuToggle =
-document.getElementById("menuToggle");
+navLinks.classList.toggle("open");
 
-const navLinks =
-document.getElementById("navLinks");
+const isOpen = navLinks.classList.contains("open");
 
-const countdown =
-document.getElementById("countdown");
+menuToggle.textContent = isOpen ? "✕" : "☰";
 
-const countdownMessage =
-document.getElementById("countdownMessage");
+});
+
+
+// Close menu after clicking a navigation link
+
+navLinks.querySelectorAll("a").forEach((link) => {
+
+link.addEventListener("click", () => {
+
+navLinks.classList.remove("open");
+
+menuToggle.textContent = "☰";
+
+});
+
+});
+
+}
+
+
+/* =========================================
+DARK MODE
+========================================= */
+
+const themeToggle = document.getElementById("themeToggle");
+
+const savedTheme = localStorage.getItem("babyShowerTheme");
+
+if (savedTheme === "dark") {
+
+document.body.classList.add("dark");
+
+if (themeToggle) {
+themeToggle.textContent = "☀️";
+}
+
+}
+
+
+if (themeToggle) {
+
+themeToggle.addEventListener("click", () => {
+
+document.body.classList.toggle("dark");
+
+const isDark =
+document.body.classList.contains("dark");
+
+localStorage.setItem(
+"babyShowerTheme",
+isDark ? "dark" : "light"
+);
+
+themeToggle.textContent =
+isDark ? "☀️" : "🌙";
+
+});
+
+}
+
+
+/* =========================================
+COUNTDOWN
+========================================= */
+
+const countdown = document.getElementById("countdown");
+
+if (countdown) {
+
+const eventDate = new Date(
+countdown.dataset.eventDate
+).getTime();
+
 
 const daysElement =
 document.getElementById("days");
@@ -34,185 +102,49 @@ const secondsElement =
 document.getElementById("seconds");
 
 
-/* =========================
-DARK MODE
-========================= */
+function updateCountdown() {
 
-const savedTheme =
-localStorage.getItem("babyShowerTheme");
+const now = new Date().getTime();
 
-if (savedTheme === "dark") {
+const difference = eventDate - now;
 
-body.classList.add("dark");
-
-if (themeToggle) {
-
-themeToggle.textContent = "☀️";
-
-themeToggle.setAttribute(
-"aria-label",
-"Switch to light mode"
-);
-}
-}
-
-
-if (themeToggle) {
-
-themeToggle.addEventListener("click", () => {
-
-body.classList.toggle("dark");
-
-const isDarkMode =
-body.classList.contains("dark");
-
-themeToggle.textContent =
-isDarkMode ? "☀️" : "🌙";
-
-themeToggle.setAttribute(
-"aria-label",
-isDarkMode
-? "Switch to light mode"
-: "Switch to dark mode"
-);
-
-localStorage.setItem(
-"babyShowerTheme",
-isDarkMode ? "dark" : "light"
-);
-
-});
-}
-
-
-/* =========================
-MOBILE MENU
-========================= */
-
-if (menuToggle && navLinks) {
-
-menuToggle.addEventListener("click", () => {
-
-const isOpen =
-navLinks.classList.toggle("open");
-
-menuToggle.setAttribute(
-"aria-expanded",
-String(isOpen)
-);
-
-menuToggle.setAttribute(
-"aria-label",
-isOpen
-? "Close navigation menu"
-: "Open navigation menu"
-);
-
-menuToggle.textContent =
-isOpen ? "✕" : "☰";
-
-});
-
-
-navLinks
-.querySelectorAll("a")
-.forEach((link) => {
-
-link.addEventListener("click", () => {
-
-navLinks.classList.remove("open");
-
-menuToggle.setAttribute(
-"aria-expanded",
-"false"
-);
-
-menuToggle.setAttribute(
-"aria-label",
-"Open navigation menu"
-);
-
-menuToggle.textContent = "☰";
-
-});
-
-});
-}
-
-
-/* =========================
-COUNTDOWN
-========================= */
-
-const eventDateString =
-countdown?.dataset.eventDate;
-
-
-if (
-eventDateString &&
-daysElement &&
-hoursElement &&
-minutesElement &&
-secondsElement
-) {
-
-const eventDate =
-new Date(eventDateString);
-
-
-const updateCountdown = () => {
-
-const now = new Date();
-
-const difference =
-eventDate.getTime() -
-now.getTime();
-
-
-/* Event has arrived */
 
 if (difference <= 0) {
 
-daysElement.textContent = "0";
-hoursElement.textContent = "0";
-minutesElement.textContent = "0";
-secondsElement.textContent = "0";
-
-if (countdownMessage) {
-
-countdownMessage.textContent =
-"The celebration has begun! We can't wait to celebrate with you.";
-}
+daysElement.textContent = "00";
+hoursElement.textContent = "00";
+minutesElement.textContent = "00";
+secondsElement.textContent = "00";
 
 return;
 }
 
 
-const totalSeconds =
-Math.floor(difference / 1000);
-
-
-const days =
-Math.floor(
-totalSeconds / 86400
+const days = Math.floor(
+difference /
+(1000 * 60 * 60 * 24)
 );
 
-const hours =
-Math.floor(
-(totalSeconds % 86400) / 3600
+const hours = Math.floor(
+(difference %
+(1000 * 60 * 60 * 24)) /
+(1000 * 60 * 60)
 );
 
-const minutes =
-Math.floor(
-(totalSeconds % 3600) / 60
+const minutes = Math.floor(
+(difference %
+(1000 * 60 * 60)) /
+(1000 * 60)
 );
 
-const seconds =
-totalSeconds % 60;
+const seconds = Math.floor(
+(difference % (1000 * 60)) /
+1000
+);
 
 
 daysElement.textContent =
-String(days);
+String(days).padStart(2, "0");
 
 hoursElement.textContent =
 String(hours).padStart(2, "0");
@@ -223,93 +155,166 @@ String(minutes).padStart(2, "0");
 secondsElement.textContent =
 String(seconds).padStart(2, "0");
 
-
-if (countdownMessage) {
-
-countdownMessage.textContent =
-"Counting down to Sunday, October 18, 2026 at 3:00 PM.";
-
 }
-
-};
 
 
 updateCountdown();
 
-setInterval(
-updateCountdown,
-1000
-);
+setInterval(updateCountdown, 1000);
+
 }
 
 
-/* =========================
+/* =========================================
 EXTRA BUBBLES
-========================= */
+========================================= */
 
-const bubbleContainer =
-document.querySelector(".bubble-container");
+const hero = document.querySelector(".hero");
 
+if (hero) {
 
-if (bubbleContainer) {
+for (let i = 0; i < 12; i++) {
 
-for (
-let index = 0;
-index < 12;
-index += 1
-) {
+const bubble = document.createElement("span");
 
-const bubble =
-document.createElement("span");
+bubble.classList.add("extra-bubble");
 
-bubble.className =
-"bubble dynamic-bubble";
-
+bubble.style.position = "absolute";
+bubble.style.bottom = "-30px";
+bubble.style.left =
+`${Math.random() * 100}%`;
 
 const size =
-Math.floor(
-Math.random() * 22
-) + 8;
+Math.floor(Math.random() * 12) + 6;
 
+bubble.style.width = `${size}px`;
+bubble.style.height = `${size}px`;
 
-const leftPosition =
-Math.floor(
-Math.random() * 100
-);
+bubble.style.border =
+"2px solid rgba(255,255,255,0.45)";
 
+bubble.style.borderRadius = "50%";
 
-const duration =
-Math.floor(
-Math.random() * 8
-) + 8;
+bubble.style.pointerEvents = "none";
 
-
-const delay =
-Math.floor(
-Math.random() * 10
-);
-
-
-bubble.style.width =
-`${size}px`;
-
-bubble.style.height =
-`${size}px`;
-
-bubble.style.left =
-`${leftPosition}%`;
-
-bubble.style.animationDuration =
-`${duration}s`;
+bubble.style.animation =
+`extraBubbleRise ${
+8 + Math.random() * 10
+}s linear infinite`;
 
 bubble.style.animationDelay =
-`${delay}s`;
+`${Math.random() * 8}s`;
 
+hero.appendChild(bubble);
 
-bubbleContainer.appendChild(
-bubble
-);
 }
+
+}
+
+
+/* =========================================
+EXTRA BUBBLE ANIMATION
+========================================= */
+
+const extraBubbleStyle =
+document.createElement("style");
+
+extraBubbleStyle.textContent = `
+
+@keyframes extraBubbleRise {
+
+0% {
+transform: translateY(0);
+opacity: 0;
+}
+
+15% {
+opacity: 0.7;
+}
+
+100% {
+transform: translateY(-100vh);
+opacity: 0;
+}
+
+}
+
+`;
+
+document.head.appendChild(extraBubbleStyle);
+
+
+/* =========================================
+MAKE SURE FISH FACE RIGHT
+========================================= */
+
+const fishElements =
+document.querySelectorAll(".fish");
+
+fishElements.forEach((fish) => {
+
+fish.style.transform = "scaleX(-1)";
+
+});
+
+
+/* =========================================
+ACTIVE NAVIGATION
+========================================= */
+
+const sections =
+document.querySelectorAll("section[id]");
+
+const navigationLinks =
+document.querySelectorAll(".nav-links a");
+
+
+function updateActiveNav() {
+
+let currentSection = "";
+
+sections.forEach((section) => {
+
+const sectionTop =
+section.offsetTop - 150;
+
+const sectionHeight =
+section.offsetHeight;
+
+if (
+window.scrollY >= sectionTop &&
+window.scrollY < sectionTop + sectionHeight
+) {
+
+currentSection =
+section.getAttribute("id");
+
 }
 
 });
+
+
+navigationLinks.forEach((link) => {
+
+link.classList.remove("active");
+
+if (
+link.getAttribute("href") ===
+`#${currentSection}`
+) {
+
+link.classList.add("active");
+
+}
+
+});
+
+}
+
+
+window.addEventListener(
+"scroll",
+updateActiveNav
+);
+
+updateActiveNav();
