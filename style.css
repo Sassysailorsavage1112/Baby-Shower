@@ -384,6 +384,13 @@ animation-duration: 17s;
 animation-delay: -2s;
 }
 
+.fish-6 {
+    top:50%;
+    font-size: 2.5rem;
+    animation-duration: 17s;
+    animation-delay: -2s;   
+}
+
 @keyframes swimForward {
 
 0% {
