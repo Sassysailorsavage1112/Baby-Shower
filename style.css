@@ -377,21 +377,15 @@ animation-duration: 20s;
 animation-delay: -14s;
 }
 
-.fish-5 {
-top: 50%;
-font-size: 2rem;
-animation-duration: 17s;
-animation-delay: -2s;
-}
 
-.fish-6 {
+.fish-5 {
     top:50%;
     font-size: 2.5rem;
     animation-duration: 17s;
     animation-delay: -2s;   
 }
 
-.fish-7 {
+.fish-6 {
     top:50%;
     font-size: 2.5rem;
     animation-duration: 17s;
