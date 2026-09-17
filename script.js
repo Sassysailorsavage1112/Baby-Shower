@@ -1,9 +1,19 @@
-// Always start the page at the top when it loads
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
+// Force page to start at the top
+history.scrollRestoration = "manual";
+
+function goToTop() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "auto"
+  });
 }
 
-window.scrollTo(0, 0);
+goToTop();
+
+window.addEventListener("load", goToTop);
+
+window.addEventListener("pageshow", goToTop);
 
 /* =========================================
 MOBILE MENU
