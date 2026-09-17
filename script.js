@@ -1,3 +1,10 @@
+// Always start the page at the top when it loads
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+window.scrollTo(0, 0);
+
 /* =========================================
 MOBILE MENU
 ========================================= */
